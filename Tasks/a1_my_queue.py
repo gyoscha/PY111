@@ -3,6 +3,12 @@ My little Queue
 """
 from typing import Any
 
+# append() -> O(1)
+# pop(-1) -> O(1)
+
+# insert() -> O(N)
+# del() -> O(N)
+
 
 class Queue:
     def __init__(self):
