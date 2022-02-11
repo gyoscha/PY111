@@ -7,7 +7,6 @@ from typing import Any
 
 # Очередь основана на списке Питона
 # Начало справа, конец слева
-# ToDo Сделать вторую реализацию этой очереди (в лекции есть картинка) и peek в обоих случаях
 
 
 class PriorityQueue:
@@ -54,7 +53,15 @@ class PriorityQueue:
         :param ind: index of element (count from the beginning)
         :return: peeked element
         """
-        return None
+        if not self.priority_queue:
+            return None
+        if ind > len(self.priority_queue):
+            return None
+
+        for index, current_item in enumerate(reversed(self.priority_queue)):
+            if priority <= current_item['priority'] and index == ind:
+                return current_item['elem']
+
 
     def clear(self) -> None:
         """
