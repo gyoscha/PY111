@@ -1,4 +1,4 @@
-from a0_my_stack import Stack
+from Tasks.a0_my_stack import Stack
 
 
 def check_brackets(brackets_row: str) -> bool:
@@ -14,4 +14,17 @@ def check_brackets(brackets_row: str) -> bool:
     brackets = Stack()
     for i in brackets_row:
         brackets.push(i)
-        if len(brackets.stack)
+        if len(brackets.stack) == 1:
+            continue
+        if brackets.peek() == ')' and brackets.peek(1) == '(':
+            brackets.pop()
+            brackets.pop()
+
+    if len(brackets.stack) == 0:
+        return True
+    else:
+        return False
+
+
+if __name__ == '__main__':
+    print(check_brackets("((()(())()))()"))
