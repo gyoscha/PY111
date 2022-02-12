@@ -50,3 +50,6 @@ class Stack:
         self.stack.clear()
 
         return None
+
+    def __str__(self):
+        return f'{self.stack}'

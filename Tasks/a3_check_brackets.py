@@ -1,3 +1,6 @@
+from a0_my_stack import Stack
+
+
 def check_brackets(brackets_row: str) -> bool:
     """
     Check whether input string is a valid bracket sequence
@@ -6,4 +9,9 @@ def check_brackets(brackets_row: str) -> bool:
     :return: True if valid, False otherwise
     """
 
-    return False
+# Использовать Стэк (обьяснял в классе). По очереди проверять каждую скобку и как они закроются, то откидывать их.
+
+    brackets = Stack()
+    for i in brackets_row:
+        brackets.push(i)
+        if len(brackets.stack)
