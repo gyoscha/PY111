@@ -1,3 +1,7 @@
+from functools import lru_cache
+
+
+@lru_cache(maxsize=None)
 def calculate_paths(shape: (int, int), point: (int, int)) -> int:
     """
     Given field with size rows*cols count available paths from (0, 0) to point
