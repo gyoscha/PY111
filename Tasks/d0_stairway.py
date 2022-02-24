@@ -1,4 +1,5 @@
 from typing import Union, Sequence
+# from functools import lru_cache
 
 
 def stairway_path(stairway: Sequence[Union[float, int]]) -> Union[float, int]:
@@ -9,17 +10,26 @@ def stairway_path(stairway: Sequence[Union[float, int]]) -> Union[float, int]:
     :return: minimal cost of getting to the top
     """
 
+    total_costs = {}
+
+    # @lru_cache(maxsize=None)
     def lazy_stairway_path(stair_number: int) -> Union[float, int]:
         """Принимает номер ступени, возвращает стоимость"""
+        if stair_number in total_costs:   # мемоизация
+            return total_costs[stair_number]   # не считать, а сразу вернуть результат
+
         if stair_number == 0:
-            return stairway[stair_number]
+            total_costs[stair_number] = stairway[stair_number]
+            return total_costs[stair_number]
         if stair_number == 1:
-            return stairway[stair_number]
+            total_costs[stair_number] = stairway[stair_number]
+            return total_costs[stair_number]
 
         current_cost = stairway[stair_number]
 
-        return current_cost + min(lazy_stairway_path(stair_number-1),
-                                  lazy_stairway_path(stair_number-2))
+        total_costs[stair_number] = current_cost + min(lazy_stairway_path(stair_number-1),
+                                                       lazy_stairway_path(stair_number-2))
+        return total_costs[stair_number]
 
     return lazy_stairway_path(len(stairway) - 1)
 
