@@ -18,13 +18,13 @@ def bfs(g: nx.Graph, start_node: Hashable) -> List[Hashable]:
 
     wait_nodes = deque()   # очередь из узлов, которые ожидают обхода
     wait_nodes.append(start_node)   # подожгли первый узел
+    visited_nodes[start_node] = True
 
     path_nodes = []   # сюда должны помещаться узлы из очереди / "Сгоревшие узлы"
 
     while wait_nodes:   # пока очередь существуют
         current_node = wait_nodes.popleft()   # достаем горящий узел
         path_nodes.append(current_node)
-        visited_nodes[current_node] = True
         
         for neighbour in g[current_node]:
             if not visited_nodes[neighbour]:
