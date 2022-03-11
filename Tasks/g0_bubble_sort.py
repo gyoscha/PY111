@@ -1,21 +1,24 @@
 from typing import List
+from operator import lt, gt   # <, >
 
 
-def sort(container: List[int]) -> List[int]:
+def sort(container: List[int], asc: bool = True) -> List[int]:
     """
     Sort input container with bubble sort
 
     :param container: container of elements to be sorted
+    :param asc: Сортировать ли по возрастанию (True) или убыванию (False)
     :return: container sorted in ascending order
     """
     # сортируем по возрастанию
     offset = 1  # смещение относительно конца
+    compare_operator = gt if asc else lt
 
     for _ in range(len(container)):   # O(N)
         is_change = False  # не было замены
 
         for i in range(len(container) - offset):   # O(N)
-            if container[i] > container[i + 1]:
+            if compare_operator(container[i], container[i + 1]):
                 container[i], container[i + 1] = container[i + 1], container[i]
                 is_change = True
 
